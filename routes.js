@@ -5,3 +5,5 @@ const routes = require('express.Router()');
 
 // -------------------------- AUTHORIZATION ---------------------------------- //
 
+routes.route('/spotifyLogin')
+  .post(authorization.spotifyLogin)

@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
 
-const spotifyWebApi = require('spotify-web-api-node');
 const routes = require('./routes');
+const error = require('./middlewares/error')
 
 const app = express();
 const PORT = 3001
