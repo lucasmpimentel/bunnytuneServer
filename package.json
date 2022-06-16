@@ -1,0 +1,29 @@
+{
+  "name": "bunnytuneserver",
+  "version": "1.0.0",
+  "description": "a server for a streaming webplayer aplication",
+  "main": "server.js",
+  "scripts": {
+    "test": "test:mocha",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lucasmpimentel/bunnytuneServer.git"
+  },
+  "author": "Lucas Pimentel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasmpimentel/bunnytuneServer/issues"
+  },
+  "homepage": "https://github.com/lucasmpimentel/bunnytuneServer#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "spotify-web-api-node": "^5.0.2"
+  }
+}
