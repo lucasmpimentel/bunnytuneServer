@@ -1,0 +1,25 @@
+version: "3.5"
+
+services: 
+  bunny-db:
+    container_name: bunnyDB
+    image: mysql:8.0
+    tty: true
+    stdin_open: true
+    working_dir: /app
+    volumes: 
+      - ./:/app
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: thatsmybunny
+      MYSQL_DATABASE: bunnydb
+    ports:
+      - 3306:3306
+  adminer:
+    image: adminer:4
+    container_name: adminer_container
+    restart: always
+    ports:
+      - 8080:8080
+networks:
+  default: 
