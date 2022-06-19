@@ -3,12 +3,12 @@ const db = require('../models/connection');
 const Users = db.users;
 const Op = db.Sequelize.Op;
 
-const code500msg = 'Erro ao criar entrada no database';
+const code500msg = 'Erro ao sincronizar o banco de dados';
 
 const findAll = async () => {
   try{
-    const result = await Users.findAll();
-    return result;
+    const users = await Users.findAll();
+    return users;
   } catch (error) {
     throw new CustomError(500, code500msg)
   }
@@ -17,40 +17,50 @@ const findAll = async () => {
 const findByEmail = async (email) => {
   try {
     const condition = { email: { [Op.eq]: email}};
-    const result = Users.findAll({where: condition});
-    if (result.length === 0) throw new CustomError(404, 'email não encontrado');
+    const result = await Users.findAll({where: condition});
+    if (result.length === 0) throw new CustomError(404, 'Email não encontrado');
     return result;
   } catch (error) {
-    throw new CustomError(500, code500msg);
+    console.log(error)
+    throw new CustomError(error.status, error.message);
   }
 };
 
 const findById = async (id) => {
   try {
     const result = await Users.findByPk(id);
+    if (!result) throw new CustomError(404, 'Usuário não encontrado')
     return result;
   } catch (error) {
-    throw new CustomError(500, code500msg);
+    throw new CustomError(error.status, error.message);
   }
 };
 
 const createUser = async (newUser) => {
+  try {
   if (!newUser) throw new CustomError(400, 'Conteúdo não pode ser vazio');
-  const users = await findAll();
-  const checkEmail = users.filter((user) => user.email === newUser.email);
-  if (checkEmail.length > 0) return CustomError()
   const newUserSerialize = {
     is_active: newUser.isActive,
     name: newUser.name,
     email: newUser.email,
     user_password: newUser.userPassword,
   };
-  try {
     const result = await Users.create(newUserSerialize);
     return result;
   } catch (error) {
-    throw new CustomError(500, code500msg);
+    throw new CustomError(error.status, error.message);
   }
+};
+
+const update = async (id, updateData) => {
+  const [result] = await Users.update(updateData, {where: { id }});
+  if (result === 1) return { message: "Atualizado com sucesso"};
+  return result;
+};
+
+const deleteOne = async (id) => {
+  const [result] = await Users.destroy({ where: { id }})
+  result === 1 ? { message: "Apagado!"} : { message: "Erro no database: Não apagado"}
 };
 
 module.exports = {

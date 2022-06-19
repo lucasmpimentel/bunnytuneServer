@@ -18,7 +18,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
-db.sequelize.sync({force: true}).then(() => console.log("Droping and re-syncing database"));
+db.sequelize.sync().then(() => console.log("Droping and re-syncing database"));
 app.use(routes);
 app.use(error);
 
