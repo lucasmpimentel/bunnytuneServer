@@ -6,3 +6,7 @@ const spotifyLogin = async (code, spotifyWebApi) => {
     return error;
   }
 }
+
+module.exports = {
+  spotifyLogin,
+}

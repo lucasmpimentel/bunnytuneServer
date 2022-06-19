@@ -9,7 +9,9 @@ const spotifyLogin = async (code) => {
     clientSecret: process.env.CLIENT_SECRET,
   });
   const response = await authorizationModel.spotifyLogin(code, spotifyWebApi);
-  if (!response) throw new CustomError(401, 'Autorização não concedida');
+  if (response.body.error) throw new CustomError(
+    response.statusCode, response.body.error_description
+  );
   return response;
 }
 
