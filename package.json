@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/lucasmpimentel/bunnytuneServer#readme",
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
@@ -26,6 +29,7 @@
     "express-async-errors": "^3.1.1",
     "express-router": "^0.0.1",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
     "sequelize": "^6.21.0",
