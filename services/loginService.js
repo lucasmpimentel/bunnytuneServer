@@ -26,7 +26,6 @@ const login = async (email, password) => {
       name: getUser.name,
     }
     const token = jwt.sign({ data: user }, secret, jwtConfig);
-    
     return {...user, token};
   } catch (error) {
     throw new CustomError(error.status, error.message);

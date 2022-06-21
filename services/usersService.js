@@ -21,7 +21,6 @@ const findByEmail = async (email) => {
     if (result.length === 0) throw new CustomError(404, 'Email não encontrado');
     return result;
   } catch (error) {
-    console.log(error)
     throw new CustomError(error.status, error.message);
   }
 };

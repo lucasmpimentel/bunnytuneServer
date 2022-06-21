@@ -15,6 +15,7 @@ const routes = express.Router()
 // -------------------------- AUTHORIZATION ---------------------------------- //
 
 routes.route('/login')
+  .get(validateToken, login.validate)
   .post(login.makeLogin)
 
 routes.route('/spotifyLogin')
